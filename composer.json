@@ -1,0 +1,32 @@
+{
+    "name": "edools/edools",
+    "description": "Edools PHP Library",
+    "homepage": "http://www.edools.com",
+    "keywords": [
+      "edools",
+      "education",
+      "edtech",
+      "ead",
+      "educacao",
+      "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edools team and contributors",
+            "homepage": "https://github.com/Edools/edools-php/contributors"
+        }
+    ],
+    "require": {
+      "php": ">=5.2",
+      "ext-curl": "*",
+      "ext-json": "*",
+      "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "simpletest/simpletest": "1.1.5"
+    },
+    "autoload": {
+      "classmap": ["lib/Edools/"]
+    }
+}
