@@ -12,11 +12,11 @@ abstract class Edools {
   const VERSION = "0.1.0";
 
   public static $api_key = null;
-  public static $api_version = "v1";
-  public static $endpoint = "https://api.edools.com";
+  public static $api_version = null;
+  public static $endpoint = null;
 
   public static function getBaseURI() {
-   return self::$endpoint . "/" . self::$api_version;
+   return self::$endpoint;
   }
 
   public static function setApiKey( $_api_key ) {
@@ -25,5 +25,13 @@ abstract class Edools {
 
   public static function getApiKey() {
     return self::$api_key;
+  }
+
+  public static function setEndpoint( $_endpoint ) {
+    self::$endpoint = $_endpoint;
+  }
+
+  public static function getEndpoint() {
+    return self::$endpoint;
   }
 }

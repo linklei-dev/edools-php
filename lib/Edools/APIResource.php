@@ -1,6 +1,6 @@
 <?php
 
-class APIResource extends Edools_Object 
+class APIResource extends Edools_Object
 {
   private static $_apiRequester = null;
 

@@ -13,12 +13,8 @@ require( $baseDirectory . "/Edools/APIRequest.php" );
 require( $baseDirectory . "/Edools/APIResource.php" );
 require( $baseDirectory . "/Edools/APIChildResource.php" );
 
-// require( $baseDirectory . "/Iugu/Customer.php" );
-// require( $baseDirectory . "/Iugu/PaymentMethod.php" );
-// require( $baseDirectory . "/Iugu/PaymentToken.php" );
-// require( $baseDirectory . "/Iugu/Charge.php" );
-// require( $baseDirectory . "/Iugu/Invoice.php" );
-// require( $baseDirectory . "/Iugu/Subscription.php" );
-// require( $baseDirectory . "/Iugu/Plan.php" );
-//
+// Resources
+require( $baseDirectory . "/Edools/School.php" );
+
+
 require( $baseDirectory . "/Edools/Factory.php" );

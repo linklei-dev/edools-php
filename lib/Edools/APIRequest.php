@@ -5,7 +5,7 @@ class Edools_APIRequest {
   }
 
   private function _defaultHeaders($headers = Array()) {
-    $headers[] = "Authorization: Basic " . base64_encode(Edools::getApiKey() . ":");
+    $headers[] = 'Authorization: Token token="' . Edools::getApiKey() . '"' ;
     $headers[] = "Accept: application/json";
     $headers[] = "Accept-Charset: utf-8";
     $headers[] = "User-Agent: Edools PHPLibrary";
@@ -23,6 +23,8 @@ class Edools_APIRequest {
     if ( Edools::getApiKey() == null ) throw new EdoolsAuthenticationException("Chave de API não configurada. Utilize Edools::setApiKey(...) para configurar.");
 
     $headers = $this->_defaultHeaders();
+
+    print_r($url);
 
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
