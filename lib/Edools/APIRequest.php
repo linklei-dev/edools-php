@@ -24,8 +24,6 @@ class Edools_APIRequest {
 
     $headers = $this->_defaultHeaders();
 
-    print_r($url);
-
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
     $response = json_decode($response_body);
