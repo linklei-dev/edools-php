@@ -30,12 +30,16 @@ O autoload do composer irá cuidar do resto.
 ## Exemplo de Uso
 
 ~~~
-Edools::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd");
+Edools\Config::setApiKey("sua-chave-de-api-aqui");
+Edools\Config::setEndpoint("http://your-school-api-endpoint.com");
+
+$school = Edools\School::fetch("1");
+$school->name;
 ~~~
 
 ## Documentação
 
-Acesse [docs.edools.com](http://docs.edools.com) para referência
+Acesse [docs.edools.com](http://docs.edools.com) para referência.
 
 ## Testes
 
@@ -49,6 +53,12 @@ Execute a comitiva de testes:
 ~~~
 php ./test/Edools.php
 ~~~
+
+## To DO
+
+- Adicionar mais recursos da API
+- Adicioanr testes unitários
+
 
 ## Agradecimentos e créditos
 

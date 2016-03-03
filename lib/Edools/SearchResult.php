@@ -1,6 +1,6 @@
-<?php
+<?php namespace Edools;
 
-class Edools_SearchResult
+class SearchResult
 {
   protected $_totalResults;
   protected $_results;

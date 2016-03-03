@@ -1,11 +1,11 @@
-<?php
+<?php namespace Edools;
 
-class Edools_APIRequest {
+class APIRequest {
   public function __construct() {
   }
 
   private function _defaultHeaders($headers = Array()) {
-    $headers[] = 'Authorization: Token token="' . Edools::getApiKey() . '"' ;
+    $headers[] = 'Authorization: Token token="' . Config::getApiKey() . '"' ;
     $headers[] = "Accept: application/json";
     $headers[] = "Accept-Charset: utf-8";
     $headers[] = "User-Agent: Edools PHPLibrary";
@@ -16,11 +16,11 @@ class Edools_APIRequest {
   public function request($method, $url, $data=Array()) {
     global $edools_last_api_response_code;
 
-    if (Edools::getApiKey() == null) {
-      Edools_Utilities::authFromEnv();
+    if (Config::getApiKey() == null) {
+      Utilities::authFromEnv();
     }
 
-    if ( Edools::getApiKey() == null ) throw new EdoolsAuthenticationException("Chave de API não configurada. Utilize Edools::setApiKey(...) para configurar.");
+    if ( Config::getApiKey() == null ) throw new EdoolsAuthenticationException("Chave de API não configurada. Utilize Edools::setApiKey(...) para configurar.");
 
     $headers = $this->_defaultHeaders();
 
@@ -58,13 +58,13 @@ class Edools_APIRequest {
     switch($method) {
     case "get":
     case "delete":
-      $paramsInURL = Edools_Utilities::arrayToParams( $data );
+      $paramsInURL = Utilities::arrayToParams( $data );
       $data = null;
       $url = (strpos($url,"?")) ? $url . "&" . $paramsInURL : $url . "?" . $paramsInURL;
       break;
     case "post":
     case "put":
-      $data = Edools_Utilities::arrayToParams( $data );
+      $data = Utilities::arrayToParams( $data );
       break;
     }
 

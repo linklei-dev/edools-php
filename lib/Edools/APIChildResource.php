@@ -1,4 +1,4 @@
-<?php
+<?php namespace Edools;
 
 class APIChildResource {
   private $_parentKeys;

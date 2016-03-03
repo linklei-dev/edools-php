@@ -1,14 +1,14 @@
-<?php
+<?php namespace Edools;
 
-class EdoolsAuthenticationException extends Exception {}
-class EdoolsRequestException extends Exception {}
-class EdoolsObjectNotFound extends Exception {}
-class EdoolsException extends Exception {}
+class EdoolsAuthenticationException extends \Exception {}
+class EdoolsRequestException extends \Exception {}
+class EdoolsObjectNotFound extends \Exception {}
+class EdoolsException extends \Exception {}
 
 abstract class EdoolsResource {
 }
 
-abstract class Edools {
+abstract class Config {
   const VERSION = "0.1.0";
 
   public static $api_key = null;

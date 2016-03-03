@@ -1,11 +1,11 @@
-<?php
+<?php namespace Edools;
 
-class APIResource extends Edools_Object
+class APIResource extends Object
 {
   private static $_apiRequester = null;
 
   public static function convertClassToObjectType() {
-    $object_type = str_replace("Edools_", "", get_called_class());
+    $object_type = str_replace("Edools\\", "", get_called_class());
     $object_type = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $object_type));
     return mb_strtolower($object_type, "UTF-8");
   }
@@ -24,7 +24,7 @@ class APIResource extends Edools_Object
   }
 
   public static function API() {
-    if (APIResource::$_apiRequester == null) APIResource::$_apiRequester = new Edools_APIRequest();
+    if (APIResource::$_apiRequester == null) APIResource::$_apiRequester = new APIRequest();
     return APIResource::$_apiRequester;
   }
 
@@ -34,7 +34,7 @@ class APIResource extends Edools_Object
     if (is_string($object)) $path  = "/" . $object;
     else if (is_object($object) && (isset($object["id"])) ) $path = "/" . $object["id"];
 
-    return Edools::getBaseURI() . $uri_path . "/" . self::objectBaseURI() . $path;
+    return Config::getBaseURI() . $uri_path . "/" . self::objectBaseURI() . $path;
   }
 
   public static function url($object=NULL) {
@@ -42,7 +42,7 @@ class APIResource extends Edools_Object
   }
 
   protected static function createFromResponse($response) {
-    return Edools_Factory::createFromResponse(
+    return Factory::createFromResponse(
       self::convertClassToObjectType(),
       $response
     );

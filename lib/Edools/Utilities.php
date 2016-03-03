@@ -1,11 +1,11 @@
-<?php
+<?php namespace Edools;
 
-class Edools_Utilities {
+class Utilities {
 
   public static function authFromEnv() {
     $apiKey = getenv('EDOOLS_API_KEY');
     if ($apiKey) {
-      Edools::setApiKey($apiKey);
+      Config::setApiKey($apiKey);
     }
   }
 

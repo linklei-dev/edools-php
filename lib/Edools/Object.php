@@ -1,10 +1,10 @@
-<?php
+<?php namespace Edools;
 
 //ooooooooooooooooooooooooooooooooooooooooooooo
 // Edools_Object manages the Object State
 // Values that changed, values that need to be saved
 //ooooooooooooooooooooooooooooooooooooooooooooo
-class Edools_Object implements ArrayAccess
+class Object implements \ArrayAccess
 {
   protected $_attributes;
   protected $_unsavedAttributes;

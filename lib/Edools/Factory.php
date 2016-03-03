@@ -1,11 +1,12 @@
-<?php
+<?php namespace Edools;
 
-class Edools_Factory
+class Factory
 {
   public static function createFromResponse( $object_type, $response ) {
+
     // Should i send fetch to here?
     $object_type = str_replace(" ", "", ucwords(str_replace("_", " ", $object_type)));
-    $class_name = "Edools_" . $object_type;
+    $class_name = "Edools\\" . $object_type;
 
     if (!class_exists($class_name)) return null;
 
@@ -16,7 +17,7 @@ class Edools_Factory
         array_push( $results, self::createFromResponse($object_type, $item) );
       }
 
-      return new Edools_SearchResult( $results, $response->totalItems );
+      return new SearchResult( $results, $response->totalItems );
     }  else if (is_array($response)) {
       $results = Array();
 
@@ -24,7 +25,7 @@ class Edools_Factory
         array_push( $results, self::createFromResponse($object_type, $item) );
       }
 
-      return new Edools_SearchResult( $results, count($results) );
+      return new SearchResult( $results, count($results) );
     }
     else if (is_object($response)) {
       return new $class_name( (Array) $response );
