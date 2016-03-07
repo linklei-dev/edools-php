@@ -18,15 +18,6 @@ Inclua a biblioteca em seu arquivo PHP:
 require_once(".../edools-php/lib/Edools.php");
 ~~~
 
-### Usando Composer
-
-~~~
-$ composer require edools/edools
-Please provide a version constraint for the edools/edools requirement: 0.1.0
-~~~
-
-O autoload do composer irá cuidar do resto.
-
 ## Exemplo de Uso
 
 ~~~
@@ -58,8 +49,9 @@ php ./test/Edools.php
 
 - Adicionar mais recursos da API
 - Adicioanr testes unitários
+- Publicar biblioteca no Packagist
 
 
 ## Agradecimentos e créditos
 
-Esta biblioteca foi altamente inspirada na biblioteca [Iugu para PHP](https://github.com/iugu/iugu-php). Somos gratos pelo código muito bem escrito.
+Esta biblioteca inspirada na biblioteca [Iugu para PHP](https://github.com/iugu/iugu-php). Muito obrigado pelo ótimo código amigos.
