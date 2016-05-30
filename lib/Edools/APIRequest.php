@@ -1,5 +1,7 @@
 <?php namespace Edools;
 
+require('vendor/psy/psysh/bin/psysh');
+
 class APIRequest {
   public function __construct() {
   }
@@ -27,7 +29,6 @@ class APIRequest {
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
     $response = json_decode($response_body);
-
 
     if (json_last_error() != JSON_ERROR_NONE) throw new EdoolsObjectNotFound($response_body);
     if ($response_code == 404) throw new EdoolsObjectNotFound($response_body);
@@ -96,9 +97,9 @@ class APIRequest {
     $opts[CURLOPT_RETURNTRANSFER] = true;
     $opts[CURLOPT_HTTPHEADER] = $headers;
 
-    $opts[CURLOPT_SSL_VERIFYHOST] = 2;
-    $opts[CURLOPT_SSL_VERIFYPEER] = true;
-    $opts[CURLOPT_CAINFO] = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "data") . DIRECTORY_SEPARATOR . "ca-bundle.crt";
+    // $opts[CURLOPT_SSL_VERIFYHOST] = 2;
+    $opts[CURLOPT_SSL_VERIFYPEER] = false;
+    // $opts[CURLOPT_CAINFO] = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "data") . DIRECTORY_SEPARATOR . "ca-bundle.crt";
 
     curl_setopt_array($curl, $opts);
 
