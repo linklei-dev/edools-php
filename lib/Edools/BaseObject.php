@@ -4,7 +4,7 @@
 // Edools_Object manages the Object State
 // Values that changed, values that need to be saved
 //ooooooooooooooooooooooooooooooooooooooooooooo
-class Object implements \ArrayAccess
+class BaseObject implements \ArrayAccess
 {
   protected $_attributes;
   protected $_unsavedAttributes;

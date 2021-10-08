@@ -1,6 +1,6 @@
 <?php namespace Edools;
 
-class APIResource extends Object
+class APIResource extends BaseObject
 {
   private static $_apiRequester = null;
 
@@ -97,6 +97,12 @@ class APIResource extends Object
   }
 
   protected static function fetchAPI($key) {
+
+      $response = static::API()->request(
+          "GET",
+          static::url()
+      );
+
     try {
       $response = static::API()->request(
         "GET",

@@ -1,6 +1,7 @@
 <?php namespace Edools;
 
-require('vendor/psy/psysh/bin/psysh');
+//require('vendor/psy/psysh/bin/psysh');
+//require('../../../../psy/psysh/bin/psysh');
 
 class APIRequest {
   public function __construct() {
@@ -25,7 +26,7 @@ class APIRequest {
     if ( Config::getApiKey() == null ) throw new EdoolsAuthenticationException("Chave de API não configurada. Utilize Edools::setApiKey(...) para configurar.");
 
     $headers = $this->_defaultHeaders();
-
+    
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
     $response = json_decode($response_body);
