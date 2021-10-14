@@ -26,7 +26,6 @@ class Student extends APIResource {
         return false;
     }
 
-
     public static function get_by_id($id)
     {
         $result = self::get_students(['ids', $id]);
@@ -96,6 +95,35 @@ class Student extends APIResource {
             if (!$response) {
                 return true;
             }
+
+            if (isset($response->errors)) {
+                return false;
+            }
+            $new_object = self::createFromResponse( $response );
+            return $new_object;
+
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
+     * Cria credenciais de login para o usuario.
+     * Retorna um objeto User da Edools, com um novo hash para login no atributo credentials.
+     *
+     * @param null $attributes
+     * @return SearchResult|false|mixed|null
+     */
+    public static function sign_in($attributes = null)
+    {
+        try {
+            $response = self::API()->request(
+                "POST",
+                Config::getBaseURI() . '/users/sign_in',
+                $attributes
+            );
 
             if (isset($response->errors)) {
                 return false;
