@@ -42,4 +42,71 @@ class Student extends APIResource {
         }
         return $response;
     }
+
+    /**
+     * Cria usuario na edools.
+     * Parametros obrigatorios:
+     *  user[first_name]	String: User first name
+     *  user[email]	String: User email that should be uniq
+     *  user[password]	String: Should be greater than 6 chars
+     *  user[password_confirmation]	String: Should be equal the password
+     *
+     * @param null $attributes
+     * @return SearchResult|false|mixed|null
+     */
+    public static function create($attributes = null)
+    {
+        try {
+            $response = self::API()->request(
+                "POST",
+                static::url($attributes),
+                $attributes
+            );
+
+            if (isset($response->errors)) {
+                return false;
+            }
+            $new_object = self::createFromResponse( $response );
+            return $new_object;
+
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
+     * Deleta usuario estudante da edools.
+     *
+     * @param $id
+     * @return SearchResult|false|mixed|null
+     */
+    public static function delete($id)
+    {
+
+        try {
+            $response = self::API()->request(
+                "DELETE",
+                static::url($id),
+                $id
+            );
+
+            // Se nao retornar resposta, deletou o registro.
+            if (!$response) {
+                return true;
+            }
+
+            if (isset($response->errors)) {
+                return false;
+            }
+            $new_object = self::createFromResponse( $response );
+            return $new_object;
+
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
 }

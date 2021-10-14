@@ -26,13 +26,19 @@ class APIRequest {
     if ( Config::getApiKey() == null ) throw new EdoolsAuthenticationException("Chave de API não configurada. Utilize Edools::setApiKey(...) para configurar.");
 
     $headers = $this->_defaultHeaders();
-    
+
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
-    $response = json_decode($response_body);
+    $response = null;
+    if ($response_body) {
+        $response = json_decode($response_body);
 
-    if (json_last_error() != JSON_ERROR_NONE) throw new EdoolsObjectNotFound($response_body);
-    if ($response_code == 404) throw new EdoolsObjectNotFound($response_body);
+        if (json_last_error() != JSON_ERROR_NONE) throw new EdoolsObjectNotFound($response_body);
+        if ($response_code == 404) throw new EdoolsObjectNotFound($response_body);
+    } else if ($response_code == 404) {
+        throw new EdoolsObjectNotFound($response_body);
+    }
+
 
     if (isset($response->errors)) {
 
