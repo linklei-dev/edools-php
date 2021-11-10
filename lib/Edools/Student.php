@@ -26,20 +26,25 @@ class Student extends APIResource {
         return false;
     }
 
-    public static function get_by_id($id)
+    public static function get_by_id(int $id)
     {
-        $result = self::get_students(['ids', $id]);
-        $response = null;
+        try {
+            $response = self::API()->request(
+                "GET",
+                static::url() . "/{$id}",
+            );
 
-        if ($result && !empty($result->students)) {
-            foreach ($result->students as $student) {
-                if ((string) $student->id === (string) $id) {
-                    $response = $student;
-                    break;
-                }
+            if (isset($response->errors)) {
+                return false;
             }
+            $new_object = self::createFromResponse( $response );
+            return $new_object;
+
+        } catch (Exception $e) {
+            return false;
         }
-        return $response;
+
+        return false;
     }
 
     /**
