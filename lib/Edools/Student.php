@@ -6,11 +6,15 @@ class Student extends APIResource {
 
     public static function get_students($attributes = null)
     {
+        $params_get = '';
+        if ($attributes) {
+            $params_get = '/?' . http_build_query($attributes);
+        }
+
         try {
             $response = self::API()->request(
                 "GET",
-                static::url($attributes),
-                $attributes
+                static::url() . $params_get,
             );
 
             if (isset($response->errors)) {

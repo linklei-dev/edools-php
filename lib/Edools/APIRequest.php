@@ -107,7 +107,6 @@ class APIRequest {
     // $opts[CURLOPT_SSL_VERIFYHOST] = 2;
     $opts[CURLOPT_SSL_VERIFYPEER] = false;
     // $opts[CURLOPT_CAINFO] = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "data") . DIRECTORY_SEPARATOR . "ca-bundle.crt";
-
     curl_setopt_array($curl, $opts);
 
     $response_body = curl_exec($curl);
