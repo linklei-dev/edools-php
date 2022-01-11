@@ -70,7 +70,7 @@ class Student extends APIResource {
                 static::url($attributes),
                 $attributes
             );
-
+            
             if (isset($response->errors)) {
                 return false;
             }
